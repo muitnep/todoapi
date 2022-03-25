@@ -1,0 +1,54 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container d-flex align-items-center justify-content-center">
+   <div class="">
+     <h1 class="navbar-brand text-uppercase py-3" >To-do App</h1>
+   </div>
+    <div class="container-fluid pb-4">
+      <form  [formGroup]="form"  (ngSubmit)="submit()" class="row d-flex align-items-center" >
+        <div class="d-flex align-items-center justify-content-center">
+          <div class="col-lg-7 position-relative">
+            <input type="text" class="form-control ps-lg-4" formControlName="description" placeholder="Adicione aqui a sua tarefa">
+          </div>
+          <div style="right: 434px;" class="ms-3 position-absolute top-1 bottom-2">
+            <button type="submit"  [disabled]="!form.get('description').valid" class="btn">
+              <i style="color:#2D894AFF;" class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="container">
+<!--   <form [formGroup]="form"  (ngSubmit)="submit()" class=" d-flex align-items-center justify-content-center mt-5 mb-4" >-->
+<!--    <div class="container col-10 d-flex align-items-center justify-content-center">-->
+<!--      <div class="col-md-7">-->
+<!--        <input type="text" class="form-control" formControlName="description">-->
+<!--      </div>-->
+<!--      <div class="col-md-1 ms-4">-->
+<!--        <button class="btn btn-success" >Adicionar</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </form>-->
+  <div class="row d-flex align-items-center justify-content-center my-5">
+   <div class="col-md-7 ">
+     <ul class="list-group">
+       <h2 class="mb-4 text-center">Lista de tarefas</h2>
+       <li *ngFor="let todo of todos"
+           class="list-group-item d-flex justify-content-between align-items-center ps-lg-4 mb-2 border-0 border-bottom">
+         <span class="{{todo.done ? 'done' : ''}}">
+           {{ todo.description}}
+         </span>
+         <div class="btn-group" role="group" aria-label="Buttons action list">
+           <button type="button" class="btn" [disabled]="todo.done" (click)="done(todo)">
+             <i style="color:#2D894AFF;" class="fas fa-check"></i>
+           </button>
+           <button type="button" class="btn" (click)="delete(todo)">
+             <i style="color:#d85151;" class="fas fa-trash"></i>
+           </button>
+         </div>
+       </li>
+     </ul>
+   </div>
+  </div>
+</div>
